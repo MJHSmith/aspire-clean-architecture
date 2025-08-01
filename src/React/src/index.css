@@ -1,0 +1,263 @@
+:root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+
+    &:hover {
+        color: #535bf2;
+    }
+}
+   
+body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+}
+
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+
+    &:hover {
+      border-color: #646cff;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: 4px auto -webkit-focus-ring-color;
+    }
+}
+
+.button-link {
+    background: none;
+    border: none;
+    color: #747bff;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+
+    &:hover,
+    &:focus {
+      color: #b66df6;
+      text-decoration: underline;
+    }
+}
+
+dialog {
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    min-width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+
+    &::backdrop {
+      background: rgba(0,0,0,0.5);
+    }
+
+    form {
+        background: #2a2a2a;
+        padding: 2em;
+        border-radius: 8px;
+        position: relative;
+        min-width: 300px;
+    }
+}
+
+.dialog-close {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    font-size: 1.2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Overrides if light theme preferred */
+@media (prefers-color-scheme: light) {
+    :root {
+        color: #213547;
+        background-color: #ffffff;
+    }
+
+    a:hover {
+        color: #747bff;
+    }
+
+    button {
+        background-color: #f9f9f9;
+    }
+
+    .button-link {
+        color: #1a0dab;
+    }
+
+    dialog form {
+        background: #ffffff;
+    }
+}
+
+
+/* AnimalTable styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+th, td {
+  padding: 0.75em 1em;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+th {
+  font-weight: 600;
+}
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Responsive styles */
+@media (max-width: 550px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  thead {
+    display: none;
+  }
+  tr {
+    margin-bottom: 1.2em;    
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    padding: 0.5em 0.5em 0.5em 0.7em;   
+    border-bottom: 1px solid #e0e0e0; 
+  }
+  td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    min-height: 2.5em;
+    box-sizing: border-box;
+    display: flex;
+  }
+  td button:not(.button-link) {
+      margin-top: -8px;
+  }
+  td:before {
+    position: absolute;
+    top: 0.7em;
+    left: 1em;
+    width: 45%;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #888;
+    content: attr(data-label);
+  }
+}
+
+@media ((max-width: 550px) and (prefers-color-scheme: light)){
+  tr {
+    border-bottom: none;
+  }  
+}
+
+/* AnimalForm styles */
+.animal-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-items: flex-end;
+  margin: 1.5em 0;
+  max-width: 480px;
+  position: relative;
+
+  select,
+  input[type="text"],
+  input[type="number"] {
+    padding: 0.5em 0.8em;
+    border-radius: 6px;
+    border: 1px solid #444;
+    font-size: 1em;
+    background: #181818;
+    color: #fff;
+    min-width: 80px;
+  }
+
+  button[type="submit"] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: -3px;
+  }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  select:focus {
+    outline: 2px solid #646cff;
+    border-color: #646cff;
+  }
+
+  button[type="submit"] {
+    margin-left: 0.5em;
+  }
+}
+
+@media (max-width: 550px) {
+  .animal-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7em;
+
+    select,
+    input[type="text"],
+    input[type="number"],
+    button[type="submit"] {
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button[type="submit"] {
+        position: relative;
+        margin: 0;
+    }
+  }
+}
+
+/* Light theme overrides for AnimalForm */
+@media (prefers-color-scheme: light) {
+  .animal-form select,
+  .animal-form input[type="text"],
+  .animal-form input[type="number"] {
+    background: #fff;
+    color: #213547;
+    border: 1px solid #bbb;
+  }
+}
